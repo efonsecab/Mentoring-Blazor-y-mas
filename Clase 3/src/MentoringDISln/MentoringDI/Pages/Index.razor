@@ -1,0 +1,28 @@
+﻿@page "/"
+@inject MyDataAccess.MyCustomConnection conDI0;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Dependency Injection Sample</h1>
+
+<p>
+    <strong>Manual:</strong> @conNoDI.ConnectionString
+</p>
+<p>
+    <strong>@@inject:</strong> @conDI0.ConnectionString
+</p>
+<p>
+    <strong>@@[Inject]:</strong> @conDI1.ConnectionString
+</p>
+
+
+@code
+{
+    [Inject]
+    private MyDataAccess.MyCustomConnection conDI1 { get; set; }
+    private MyDataAccess.MyCustomConnection conNoDI = new MyDataAccess.MyCustomConnection("manually created");
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}
